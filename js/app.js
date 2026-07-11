@@ -14,6 +14,10 @@ document
 .getElementById("participantNext")
 .addEventListener("click", function () {
 
-    alert("Situation 1 Coming Next...");
+    participantNext.onclick = function(){
+
+    showQuestion(0);
+
+}
 
 });

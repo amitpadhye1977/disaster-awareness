@@ -1,0 +1,65 @@
+body{
+
+    background:#f5f7fa;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+.home-card{
+
+    background:white;
+
+    margin-top:40px;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0px 8px 25px rgba(0,0,0,.10);
+
+}
+
+.logo{
+
+    width:120px;
+
+}
+
+h1{
+
+    font-weight:700;
+
+    color:#0d6efd;
+
+}
+
+.subtitle{
+
+    color:#666;
+
+}
+
+.preparedby{
+
+    margin-bottom:5px;
+
+}
+
+.intro{
+
+    text-align:justify;
+
+    line-height:1.8;
+
+}
+
+#startBtn{
+
+    border-radius:50px;
+
+    padding:15px 40px;
+
+    font-size:18px;
+
+}

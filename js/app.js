@@ -114,38 +114,20 @@ Begin Awareness Initiative
 
 }
 
-function showParticipant(){
 
-document.getElementById("content").innerHTML=`
 
-<div class="container">
 
-<div class="main-card text-center">
 
-<h2>
+                </button>
 
-👤 Participant Screen
+            </div>
 
-</h2>
+        </div>
 
-<p>
+    </div>
 
-Coming in Step 4
-
-</p>
-
-</div>
-
-</div>
-
-`;
-
-renderProgress(
-10,
-"Participant Details"
-);
+    `;
 
 }
-
 
 

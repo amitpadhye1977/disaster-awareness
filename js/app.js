@@ -363,46 +363,70 @@ function startAwareness() {
 
 function showQuestion() {
 
+    const q = questions[currentQuestion];
+
     renderProgress(
         Math.round(((currentQuestion + 1) / questions.length) * 100),
-        questions[currentQuestion].category
+        `${q.icon} ${q.category} • Situation ${currentQuestion + 1} of ${questions.length}`
     );
 
-    document.getElementById("content").innerHTML = `
+    let html = `
 
-<div class="container">
+    <div class="container">
 
-<div class="main-card text-center">
+        <div class="main-card">
 
-<h2>
+            <div class="d-flex justify-content-between align-items-center">
 
-🚧
+                <h3 class="mb-0">
 
-</h2>
+                    ${q.icon} ${q.title}
 
-<h3>
+                </h3>
 
-Situation Engine
+                <span class="risk ${q.risk}">
 
-</h3>
+                    ${q.risk.toUpperCase()}
 
-<p>
+                </span>
 
-Step 5 will begin from here.
+            </div>
 
-</p>
+            <hr>
 
-<p>
+            <p class="fs-5">
 
-Current Situation :
-<strong>${currentQuestion + 1}</strong>
+                ${q.situation}
 
-</p>
+            </p>
 
-</div>
+    `;
 
-</div>
+    q.options.forEach(function(option, index){
 
-`;
+        html += `
+
+        <div
+            class="option-card"
+            id="option${index}"
+            onclick="selectOption(${index})">
+
+            ${option.text}
+
+        </div>
+
+        `;
+
+    });
+
+    html += `
+
+        </div>
+
+    </div>
+
+    `;
+
+    document.getElementById("content").innerHTML = html;
 
 }

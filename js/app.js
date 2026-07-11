@@ -115,22 +115,6 @@ Begin Awareness Initiative
 }
 
 
-
-
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    `;
-
-}
-
-
 function startAwareness(){
 
     participant.age =

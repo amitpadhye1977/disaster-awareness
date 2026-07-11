@@ -191,3 +191,38 @@ function startAwareness(){
 }
 
 
+
+
+function showQuestion(){
+
+    renderProgress(
+        20,
+        "Fire Safety • Situation 1"
+    );
+
+    document.getElementById("content").innerHTML = `
+
+    <div class="container">
+
+        <div class="main-card text-center">
+
+            <h2>
+                🔥 Situation Screen
+            </h2>
+
+            <p>
+
+                Coming in Step 5
+
+            </p>
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+
+
+

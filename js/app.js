@@ -436,26 +436,26 @@ function selectOption(index){
 
     document.querySelectorAll(".option-card")
         .forEach(function(card){
-
             card.classList.remove("selected");
-
         });
 
     document
-        .getElementById("option" + index)
+        .getElementById("option"+index)
         .classList.add("selected");
+
+    const q = questions[currentQuestion];
+
+    const selected = q.options[index];
+
+    if(selected.correct){
+        score++;
+    }
+
+    answers.push(index);
 
     setTimeout(function(){
 
-        const q = questions[currentQuestion];
-
-        if(selected.correct){
-
-        score++;
-
-        }
-
-        showFeedback(q.options[index], q);
+        showFeedback(selected, q);
 
     },500);
 

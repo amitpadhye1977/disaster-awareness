@@ -20,7 +20,11 @@ document
 
 function showQuestion(index){
 
-    showScreen("questionScreen");
+    participantScreen.style.display = "none";
+
+document
+.getElementById("questionScreen")
+.style.display = "block";
 
     const q = questions[index];
 

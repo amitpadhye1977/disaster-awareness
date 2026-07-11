@@ -73,3 +73,36 @@ function showQuestion(index){
     .innerHTML = html;
 
 }
+
+
+function checkAnswer(index){
+
+    const selected =
+    document.querySelector('input[name="answer"]:checked');
+
+    if(selected==null){
+
+        alert("Please select an answer.");
+
+        return;
+
+    }
+
+    const answer =
+    parseInt(selected.value);
+
+    const q = questions[index];
+
+    if(answer==q.correct){
+
+        alert("Correct!");
+
+    }
+
+    else{
+
+        alert("Incorrect!\n\n"+q.explanation);
+
+    }
+
+}

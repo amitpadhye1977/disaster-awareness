@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -7,233 +8,51 @@
 
     <title>Disaster Preparedness Awareness Initiative</title>
 
+    <meta name="description"
+        content="Disaster Preparedness Awareness Initiative - An Academic Public Awareness Initiative">
+
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        rel="stylesheet">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Custom CSS -->
+
     <link rel="stylesheet" href="css/style.css">
-    
 
 </head>
 
 <body>
 
-<div id="app">
+    <!-- ========================= -->
+    <!-- Main Application -->
+    <!-- ========================= -->
 
-    <!-- Home Screen -->
-    <section id="homeScreen" class="screen active">
+    <div id="app"></div>
 
-        <div class="container">
+    <!-- ========================= -->
+    <!-- Bootstrap -->
+    <!-- ========================= -->
 
-            <div class="row justify-content-center">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
-                <div class="col-lg-8 col-md-10">
+    <!-- ========================= -->
+    <!-- Application Files -->
+    <!-- ========================= -->
 
-                    <div class="home-card">
-
-                        <div class="text-center">
-
-                            <img src="images/logo.png"
-                                 class="logo"
-                                 alt="Logo">
-
-                            <h1 class="mt-4">
-                                Disaster Preparedness
-                                <br>
-                                Awareness Initiative
-                            </h1>
-
-                            <h5 class="subtitle">
-                                Creating Safer Homes Through Awareness
-                            </h5>
-
-                            <hr>
-
-                            <p class="preparedby">
-                                <strong>Prepared by</strong>
-                            </p>
-
-                            <h4>
-                                Amit Padhye
-                            </h4>
-
-                            <p>
-                                Certificate Program in Disaster Management Law
-                                <br>
-                                VPM's TMC Law College, Thane
-                            </p>
-
-                        </div>
-
-                        <hr>
-
-                        <p class="intro">
-
-                            Welcome!
-
-                            <br><br>
-
-                            This awareness initiative presents practical
-                            real-life situations related to
-
-                            Fire,
-
-                            Gas Leakage,
-
-                            Earthquake,
-
-                            Flooding
-
-                            and
-
-                            Building Safety.
-
-                            <br><br>
-
-                            After each response you will immediately learn
-                            the recommended safety practice.
-
-                        </p>
-
-                        <div class="text-center mt-4">
-
-                            <button id="startBtn"
-                                    class="btn btn-primary btn-lg px-5">
-
-                                Begin Awareness Initiative
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-<!-- Participant Screen -->
-<section id="participantScreen" class="screen">
-
-    <div class="container">
-
-        <div class="row justify-content-center">
-
-            <div class="col-lg-8 col-md-10">
-
-                <div class="home-card">
-
-                    <h2 class="text-center mb-4">
-                        Participant Details
-                    </h2>
-
-                    <div class="mb-3">
-                        <label class="form-label">Age Group</label>
-
-                        <select class="form-select" id="ageGroup">
-                            <option value="">Select Age Group</option>
-                            <option>Below 18</option>
-                            <option>18 - 30</option>
-                            <option>31 - 45</option>
-                            <option>46 - 60</option>
-                            <option>Above 60</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Gender (Optional)</label>
-
-                        <select class="form-select" id="gender">
-                            <option value="">Select Gender</option>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Prefer not to say</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">City</label>
-
-                        <input type="text"
-                               class="form-control"
-                               id="city">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Locality</label>
-
-                        <input type="text"
-                               class="form-control"
-                               id="locality">
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label">Type of Residence</label>
-
-                        <select class="form-select" id="residence">
-                            <option value="">Select</option>
-                            <option>Apartment</option>
-                            <option>Independent House</option>
-                            <option>Chawl</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-
-                    <div class="text-center">
-
-                        <button
-                            class="btn btn-success btn-lg"
-                            id="participantNext">
-
-                            Continue
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section id="questionScreen" class="screen">
-
-    <div class="container">
-
-        <div class="row justify-content-center">
-
-            <div class="col-lg-8">
-
-                <div class="home-card">
-
-                    <div id="questionContainer">
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-</div>
-    
-<script src="js/questions.js"></script>
-<script src="js/app.js"></script>
+    <script src="js/questions.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
+
 </html>

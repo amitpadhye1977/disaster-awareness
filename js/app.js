@@ -475,12 +475,16 @@ function nextQuestion(){
 
     currentQuestion++;
 
+    answerLocked = false;
+
     if(currentQuestion >= questions.length){
 
         showSummary();
         return;
 
     }
+
+    
 
     showQuestion();
 

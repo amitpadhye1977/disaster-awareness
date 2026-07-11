@@ -131,3 +131,63 @@ Begin Awareness Initiative
 }
 
 
+function startAwareness(){
+
+    participant.age =
+    document.getElementById("age").value;
+
+    participant.gender =
+    document.getElementById("gender").value;
+
+    participant.city =
+    document.getElementById("city").value.trim();
+
+    participant.locality =
+    document.getElementById("locality").value.trim();
+
+    participant.residence =
+    document.getElementById("residence").value;
+
+    if(participant.age==""){
+
+        alert("Please select Age Group.");
+
+        return;
+
+    }
+
+    if(participant.city==""){
+
+        alert("Please enter City.");
+
+        return;
+
+    }
+
+    if(participant.locality==""){
+
+        alert("Please enter Locality.");
+
+        return;
+
+    }
+
+    if(participant.residence==""){
+
+        alert("Please select Type of Residence.");
+
+        return;
+
+    }
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    answers.length = 0;
+
+    showQuestion();
+
+}
+
+

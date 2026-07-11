@@ -651,12 +651,100 @@ function restartApp(){
 
     currentQuestion = 0;
 
-    score = 0;
+score = 0;
 
-    answers.length = 0;
+answers.length = 0;
 
-    showHome();
+answerLocked = false;
 
+renderProgress(0,"Welcome");
+
+showHome();
 }
 
 
+
+
+function showFeedback(selected, q){
+
+    document.getElementById("content").innerHTML = `
+
+    <div class="container">
+
+        <div class="main-card">
+
+            <h3>
+
+                ${selected.correct ? "✅ Recommended Response" : "💡 Let's Learn Together"}
+
+            </h3>
+
+            <hr>
+
+            <div class="alert alert-secondary">
+
+                <strong>You Selected</strong>
+
+                <br><br>
+
+                ${selected.text}
+
+            </div>
+
+            <p>
+
+                ${selected.feedback}
+
+            </p>
+
+            <div class="alert alert-success">
+
+                <strong>Recommended Response</strong>
+
+                <br><br>
+
+                ${q.options.find(option => option.correct).text}
+
+            </div>
+
+            <div class="tip-box mt-3">
+
+                <strong>🛡 Safety Tip</strong>
+
+                <br><br>
+
+                ${q.tip}
+
+            </div>
+
+            <div class="info-box mt-3">
+
+                <strong>📖 Did You Know?</strong>
+
+                <br><br>
+
+                ${q.didYouKnow}
+
+            </div>
+
+            <div class="text-center mt-4">
+
+                <button
+                    class="btn btn-success"
+                    onclick="nextQuestion()">
+
+                    ${currentQuestion == questions.length-1 ?
+                    "View Summary" :
+                    "Continue Learning →"}
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+}

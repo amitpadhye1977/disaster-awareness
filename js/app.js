@@ -21,3 +21,55 @@ document
 }
 
 });
+
+function showQuestion(index){
+
+    showScreen("questionScreen");
+
+    const q = questions[index];
+
+    let html = "";
+
+    html += "<h5>Situation "+(index+1)+" of "+questions.length+"</h5>";
+
+    html += "<hr>";
+
+    html += "<h3>"+q.title+"</h3>";
+
+    html += "<p>"+q.situation+"</p>";
+
+    for(let i=0;i<q.options.length;i++){
+
+        html += `
+        <div class="form-check mb-3">
+
+            <input class="form-check-input"
+                   type="radio"
+                   name="answer"
+                   value="${i}">
+
+            <label class="form-check-label">
+
+                ${q.options[i]}
+
+            </label>
+
+        </div>
+        `;
+
+    }
+
+    html += `
+    <button class="btn btn-success mt-3"
+            onclick="checkAnswer(${index})">
+
+            Submit Answer
+
+    </button>
+    `;
+
+    document
+    .getElementById("questionContainer")
+    .innerHTML = html;
+
+}

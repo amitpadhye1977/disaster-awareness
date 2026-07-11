@@ -430,3 +430,107 @@ function showQuestion() {
     document.getElementById("content").innerHTML = html;
 
 }
+
+
+function selectOption(index){
+
+    document.querySelectorAll(".option-card")
+        .forEach(function(card){
+
+            card.classList.remove("selected");
+
+        });
+
+    document
+        .getElementById("option" + index)
+        .classList.add("selected");
+
+    setTimeout(function(){
+
+        const q = questions[currentQuestion];
+
+        showFeedback(q.options[index], q);
+
+    },500);
+
+}
+
+function showFeedback(selected,q){
+
+    document.getElementById("content").innerHTML = `
+
+    <div class="container">
+
+        <div class="main-card">
+
+            <h3>
+
+                ${selected.correct ? "✅ Recommended Response" : "🟠 A Safer Approach"}
+
+            </h3>
+
+            <hr>
+
+            <p>
+
+                ${selected.feedback}
+
+            </p>
+
+            <div class="tip-box">
+
+                <strong>🛡 Safety Tip</strong>
+
+                <br><br>
+
+                ${q.tip}
+
+            </div>
+
+            <div class="info-box">
+
+                <strong>📖 Did You Know?</strong>
+
+                <br><br>
+
+                ${q.didYouKnow}
+
+            </div>
+
+            <div class="text-center mt-4">
+
+                <button
+                    class="btn btn-success"
+                    onclick="nextQuestion()">
+
+                    ${currentQuestion == questions.length-1 ?
+                    "View Summary" :
+                    "Next Situation →"}
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+
+function nextQuestion(){
+
+    currentQuestion++;
+
+    if(currentQuestion >= questions.length){
+
+        alert("Summary Screen will be created in the next step.");
+
+        return;
+
+    }
+
+    showQuestion();
+
+}

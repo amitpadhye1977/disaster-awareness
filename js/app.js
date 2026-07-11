@@ -113,3 +113,39 @@ Begin Awareness Initiative
 `;
 
 }
+
+function showParticipant(){
+
+document.getElementById("content").innerHTML=`
+
+<div class="container">
+
+<div class="main-card text-center">
+
+<h2>
+
+👤 Participant Screen
+
+</h2>
+
+<p>
+
+Coming in Step 4
+
+</p>
+
+</div>
+
+</div>
+
+`;
+
+renderProgress(
+10,
+"Participant Details"
+);
+
+}
+
+
+

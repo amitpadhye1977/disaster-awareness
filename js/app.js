@@ -449,6 +449,12 @@ function selectOption(index){
 
         const q = questions[currentQuestion];
 
+        if(selected.correct){
+
+        score++;
+
+        }
+
         showFeedback(q.options[index], q);
 
     },500);
@@ -525,8 +531,7 @@ function nextQuestion(){
 
     if(currentQuestion >= questions.length){
 
-        alert("Summary Screen will be created in the next step.");
-
+        showSummary();
         return;
 
     }
@@ -534,3 +539,174 @@ function nextQuestion(){
     showQuestion();
 
 }
+
+function showSummary(){
+
+    const percentage = Math.round((score / questions.length) * 100);
+
+    let preparedness = "";
+    let badge = "";
+    let alertClass = "";
+
+    if(percentage >= 80){
+
+        preparedness = "Well Prepared";
+        badge = "🟢";
+        alertClass = "alert-success";
+
+    }
+    else if(percentage >= 60){
+
+        preparedness = "Moderately Prepared";
+        badge = "🟡";
+        alertClass = "alert-warning";
+
+    }
+    else{
+
+        preparedness = "Needs Improvement";
+        badge = "🔴";
+        alertClass = "alert-danger";
+
+    }
+
+    document.getElementById("content").innerHTML = `
+
+    <div class="container">
+
+        <div class="main-card text-center">
+
+            <h2>
+
+                🎉 Awareness Completed
+
+            </h2>
+
+            <hr>
+
+            <h1 class="display-4">
+
+                ${percentage}%
+
+            </h1>
+
+            <div class="alert ${alertClass}">
+
+                <h4>
+
+                    ${badge} ${preparedness}
+
+                </h4>
+
+            </div>
+
+            <p>
+
+                You completed
+
+                <strong>${questions.length}</strong>
+
+                practical situations.
+
+            </p>
+
+            <p>
+
+                Community Preparedness Index
+
+            </p>
+
+            <h2>
+
+                ${percentage} / 100
+
+            </h2>
+
+            <hr>
+
+            <div class="text-start">
+
+                <h5>Participant Details</h5>
+
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th>Age Group</th>
+                        <td>${participant.age}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Gender</th>
+                        <td>${participant.gender || "-"}</td>
+                    </tr>
+
+                    <tr>
+                        <th>City</th>
+                        <td>${participant.city}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Locality</th>
+                        <td>${participant.locality}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Residence</th>
+                        <td>${participant.residence}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div class="alert alert-info mt-4">
+
+                <strong>
+
+                    Thank you for participating.
+
+                </strong>
+
+                <br><br>
+
+                Disaster preparedness begins with awareness.
+                Share this initiative with your family,
+                friends and neighbours.
+
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+
+                <button
+                    class="btn btn-success"
+                    onclick="restartApp()">
+
+                    Start Again
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+    renderProgress(100,"Awareness Completed");
+
+}
+
+function restartApp(){
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    answers.length = 0;
+
+    showHome();
+
+}
+
+

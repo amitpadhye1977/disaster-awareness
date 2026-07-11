@@ -12,6 +12,7 @@ let score = 0;
 
 const participant = {};
 const answers = [];
+let answerLocked = false;
 
 // ----------------------------
 // Start Application
@@ -434,9 +435,17 @@ function showQuestion() {
 
 function selectOption(index){
 
+    if(answerLocked) return;
+
+    answerLocked = true;
+
     document.querySelectorAll(".option-card")
         .forEach(function(card){
+
             card.classList.remove("selected");
+
+            card.style.pointerEvents="none";
+
         });
 
     document
@@ -448,83 +457,20 @@ function selectOption(index){
     const selected = q.options[index];
 
     if(selected.correct){
+
         score++;
+
     }
 
     answers.push(index);
 
     setTimeout(function(){
 
-        showFeedback(selected, q);
+        showFeedback(selected,q);
 
     },500);
 
 }
-
-function showFeedback(selected,q){
-
-    document.getElementById("content").innerHTML = `
-
-    <div class="container">
-
-        <div class="main-card">
-
-            <h3>
-
-                ${selected.correct ? "✅ Recommended Response" : "🟠 A Safer Approach"}
-
-            </h3>
-
-            <hr>
-
-            <p>
-
-                ${selected.feedback}
-
-            </p>
-
-            <div class="tip-box">
-
-                <strong>🛡 Safety Tip</strong>
-
-                <br><br>
-
-                ${q.tip}
-
-            </div>
-
-            <div class="info-box">
-
-                <strong>📖 Did You Know?</strong>
-
-                <br><br>
-
-                ${q.didYouKnow}
-
-            </div>
-
-            <div class="text-center mt-4">
-
-                <button
-                    class="btn btn-success"
-                    onclick="nextQuestion()">
-
-                    ${currentQuestion == questions.length-1 ?
-                    "View Summary" :
-                    "Next Situation →"}
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    `;
-
-}
-
 function nextQuestion(){
 
     currentQuestion++;

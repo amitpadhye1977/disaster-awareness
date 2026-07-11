@@ -14,11 +14,7 @@ document
 .getElementById("participantNext")
 .addEventListener("click", function () {
 
-    participantNext.onclick = function(){
-
     showQuestion(0);
-
-}
 
 });
 

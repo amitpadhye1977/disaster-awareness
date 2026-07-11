@@ -1,12 +1,13 @@
 renderHeader();
 
-renderProgress();
+renderProgress(
+0,
+"Welcome"
+);
 
 renderFooter();
 
-document
-.getElementById("content")
-.innerHTML=`
+document.getElementById("content").innerHTML=`
 
 <div class="container">
 
@@ -14,13 +15,27 @@ document
 
 <h3>
 
-Version 3 Started Successfully
+Version 3 Layout Ready
 
 </h3>
 
 <p>
 
-Application Layout Created.
+Sticky Header
+
+✔
+
+Sticky Progress
+
+✔
+
+Content Area
+
+✔
+
+Footer
+
+✔
 
 </p>
 

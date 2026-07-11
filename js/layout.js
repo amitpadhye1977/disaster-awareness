@@ -1,46 +1,50 @@
 function renderHeader(){
 
-document
-.getElementById("header")
-.innerHTML=`
+document.getElementById("header").innerHTML=`
+
+<div class="header-wrapper">
 
 <div class="container">
 
-<div class="main-card text-center">
+<div class="header-card">
 
-<h2>
+<div class="d-flex align-items-center">
 
-🛡️ ${APP.title}
+<div class="logo">
 
-</h2>
+🛡️
 
-<p class="subtitle">
+</div>
+
+<div class="ms-3">
+
+<h4 class="m-0">
+
+${APP.title}
+
+</h4>
+
+<div class="subtitle">
 
 ${APP.tagline}
 
-</p>
+</div>
+
+</div>
+
+</div>
 
 <hr>
 
-<div>
+<div class="small text-center">
 
-<strong>
+<strong>${APP.preparedBy}</strong><br>
 
-Prepared by
-
-</strong>
-
-<br>
-
-${APP.preparedBy}
-
-<br>
-
-${APP.course}
-
-<br>
+${APP.course}<br>
 
 ${APP.college}
+
+</div>
 
 </div>
 
@@ -52,19 +56,60 @@ ${APP.college}
 
 }
 
-function renderProgress(){
+function renderProgress(percent=0,text="Welcome"){
 
-document
-.getElementById("progressContainer")
-.innerHTML="";
+document.getElementById("progressContainer").innerHTML=`
+
+<div class="progress-wrapper">
+
+<div class="container">
+
+<div class="progress-card">
+
+<div class="d-flex justify-content-between">
+
+<div>
+
+<strong>
+
+${text}
+
+</strong>
+
+</div>
+
+<div>
+
+${percent}%
+
+</div>
+
+</div>
+
+<div class="progress mt-2">
+
+<div
+class="progress-bar"
+
+style="width:${percent}%">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+`;
 
 }
 
 function renderFooter(){
 
-document
-.getElementById("footer")
-.innerHTML=`
+document.getElementById("footer").innerHTML=`
 
 <div class="container">
 

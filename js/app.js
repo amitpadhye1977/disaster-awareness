@@ -682,81 +682,84 @@ function restartApp(){
 // Submit Survey to Google Sheets
 // =======================================
 
-async function submitSurvey() {
+async function submitSurvey(){
 
     if(surveySubmitted) return;
 
     surveySubmitted = true;
 
     const percentage =
-        Math.round((score / questions.length) * 100);
+        Math.round((score/questions.length)*100);
 
-    let preparedness = "";
+    let preparedness="";
 
-    if (percentage >= 80)
-        preparedness = "Well Prepared";
-    else if (percentage >= 60)
-        preparedness = "Moderately Prepared";
+    if(percentage>=80)
+        preparedness="Well Prepared";
+    else if(percentage>=60)
+        preparedness="Moderately Prepared";
     else
-        preparedness = "Needs Improvement";
+        preparedness="Needs Improvement";
 
-    const data = {
+    const form=document.createElement("form");
 
-        age: participant.age,
-        gender: participant.gender,
-        city: participant.city,
-        locality: participant.locality,
-        residence: participant.residence,
+    form.method="POST";
 
-        score: score,
-        percentage: percentage,
-        preparedness: preparedness,
+    form.action=APP.googleScriptUrl;
 
-        // Category Scores (we'll calculate these later)
-        fireScore: 0,
-        lpgScore: 0,
-        earthquakeScore: 0,
-        floodScore: 0,
-        buildingScore: 0,
-        familyScore: 0,
-        awarenessScore: 0,
-        medicalScore: 0,
+    form.target="hidden_iframe";
 
-        answers: answers,
+    function add(name,value){
 
-        browser: navigator.userAgent,
+        const input=document.createElement("input");
 
-        platform: navigator.platform,
+        input.type="hidden";
 
-        version: APP.version
+        input.name=name;
 
-    };
+        input.value=value;
 
-    try{
-
-        const response = await fetch(APP.googleScriptUrl, {
-
-            method: "POST",
-
-            mode: "no-cors",
-        
-            body: JSON.stringify(data)
-        
-        });
-
-        const result = await response.json();
-
-        console.log(result);
+        form.appendChild(input);
 
     }
-    catch(err){
 
-        console.error(err);
+    add("age",participant.age);
+    add("gender",participant.gender);
+    add("city",participant.city);
+    add("locality",participant.locality);
+    add("residence",participant.residence);
+
+    add("score",score);
+    add("percentage",percentage);
+    add("preparedness",preparedness);
+
+    add("fireScore",0);
+    add("lpgScore",0);
+    add("earthquakeScore",0);
+    add("floodScore",0);
+    add("buildingScore",0);
+    add("familyScore",0);
+    add("awarenessScore",0);
+    add("medicalScore",0);
+
+    for(let i=0;i<answers.length;i++){
+
+        add("Q"+(i+1),answers[i].selectedOption);
 
     }
+
+    add("browser",navigator.userAgent);
+
+    add("platform",navigator.platform);
+
+    add("version",APP.version);
+
+    document.body.appendChild(form);
+
+    form.submit();
+
+    document.body.removeChild(form);
 
 }
-
 
 function showFeedback(selected, q){
 

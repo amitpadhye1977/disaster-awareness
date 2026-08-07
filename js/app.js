@@ -683,31 +683,29 @@ function showSummary(){
 
             <div class="alert alert-info mt-4">
 
-                <strong>
-
-                    Thank you for participating.
-
-                </strong>
-
-                <br><br>
-
-                Disaster preparedness begins with awareness.
-                Share this initiative with your family,
-                friends and neighbours.
-
-            </div>
-
-            <div class="d-grid gap-2 mt-4">
-
-                <button
-                    class="btn btn-success"
-                    onclick="restartApp()">
-
-                    Start Again
-
-                </button>
-
-            </div>
+            <strong>
+                Thank you for participating.
+            </strong>
+        
+            <br><br>
+        
+            Disaster preparedness begins with awareness.
+            Share this initiative with your family,
+            friends and neighbours.
+        
+        </div>
+        
+        <div class="d-grid gap-2 mt-4">
+        
+            <button
+                class="btn btn-success"
+                onclick="restartApp()">
+        
+                Start Again
+        
+            </button>
+        
+        </div>
 
         </div>
 

@@ -7,6 +7,7 @@
 // Global Variables
 // ----------------------------
 
+let surveySubmitted = false;
 let currentQuestion = 0;
 let score = 0;
 
@@ -494,6 +495,8 @@ function nextQuestion(){
 
 function showSummary(){
 
+    submitSurvey();
+
     const maxScore = questions.length;
 
     const percentage = Math.round((score / maxScore) * 100);
@@ -653,20 +656,101 @@ function showSummary(){
 
 function restartApp(){
 
+    surveySubmitted = false;
+
     currentQuestion = 0;
-
-score = 0;
-
-answers.length = 0;
-
-answerLocked = false;
-
-renderProgress(0,"Welcome");
-
-showHome();
+    
+    score = 0;
+    
+    answers.length = 0;
+    
+    answerLocked = false;
+    
+    renderProgress(0,"Welcome");
+    
+    showHome();
 }
 
+// =======================================
+// Submit Survey to Google Sheets
+// =======================================
 
+async function submitSurvey() {
+
+    if(surveySubmitted) return;
+
+    surveySubmitted = true;
+
+    const percentage =
+        Math.round((score / questions.length) * 100);
+
+    let preparedness = "";
+
+    if (percentage >= 80)
+        preparedness = "Well Prepared";
+    else if (percentage >= 60)
+        preparedness = "Moderately Prepared";
+    else
+        preparedness = "Needs Improvement";
+
+    const data = {
+
+        age: participant.age,
+        gender: participant.gender,
+        city: participant.city,
+        locality: participant.locality,
+        residence: participant.residence,
+
+        score: score,
+        percentage: percentage,
+        preparedness: preparedness,
+
+        // Category Scores (we'll calculate these later)
+        fireScore: 0,
+        lpgScore: 0,
+        earthquakeScore: 0,
+        floodScore: 0,
+        buildingScore: 0,
+        familyScore: 0,
+        awarenessScore: 0,
+        medicalScore: 0,
+
+        answers: answers,
+
+        browser: navigator.userAgent,
+
+        platform: navigator.platform,
+
+        version: APP.version
+
+    };
+
+    try{
+
+        const response = await fetch(APP.googleScriptUrl,{
+
+            method:"POST",
+
+            body:JSON.stringify(data),
+
+            headers:{
+                "Content-Type":"application/json"
+            }
+
+        });
+
+        const result = await response.json();
+
+        console.log(result);
+
+    }
+    catch(err){
+
+        console.error(err);
+
+    }
+
+}
 
 
 function showFeedback(selected, q){

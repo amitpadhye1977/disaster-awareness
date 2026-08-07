@@ -852,80 +852,69 @@ async function submitSurvey(){
 
 function calculateCategoryScores(){
 
-    const scores={
+    const scores = {
 
         fire:0,
-
         lpg:0,
-
         earthquake:0,
-
         flood:0,
-
         building:0,
-
         family:0,
-
         awareness:0,
-
         medical:0
 
     };
 
     answers.forEach(function(answer){
 
-        const q=questions.find(x=>x.id==answer.questionId);
+        const q = questions.find(function(item){
+
+            return item.id === answer.questionId;
+
+        });
 
         if(!q) return;
 
         switch(q.category){
 
-            case "Fire":
+            case "Fire Safety":
 
-                scores.fire+=answer.score;
-
+                scores.fire += answer.score;
                 break;
 
-            case "Gas Leakage":
+            case "LPG & Electrical Safety":
 
-                scores.lpg+=answer.score;
-
+                scores.lpg += answer.score;
                 break;
 
             case "Earthquake":
 
-                scores.earthquake+=answer.score;
-
+                scores.earthquake += answer.score;
                 break;
 
             case "Flood":
 
-                scores.flood+=answer.score;
-
+                scores.flood += answer.score;
                 break;
 
             case "Building Safety":
 
-                scores.building+=answer.score;
-
+                scores.building += answer.score;
                 break;
 
             case "Family Preparedness":
 
-                scores.family+=answer.score;
-
+                scores.family += answer.score;
                 break;
 
             case "Disaster Awareness":
 
-                scores.awareness+=answer.score;
-
+                scores.awareness += answer.score;
                 break;
 
-            case "Medical":
+            case "Medical Emergency":
 
-                scores.medical+=answer.score;
-
+                scores.medical += answer.score;
                 break;
 
         }

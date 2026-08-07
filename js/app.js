@@ -1002,3 +1002,44 @@ function showFeedback(selected, q){
     `;
 
 }
+
+function downloadLeaflet(){
+
+    const form = document.createElement("form");
+
+    form.method = "POST";
+    form.action = APP.googleScriptUrl;
+    form.target = "hidden_iframe";
+
+    function add(name,value){
+
+        const input=document.createElement("input");
+
+        input.type="hidden";
+        input.name=name;
+        input.value=value;
+
+        form.appendChild(input);
+
+    }
+
+    add("action","download");
+    add("score",score);
+    add("preparedness",preparedness);
+    add("city",participant.city);
+    add("locality",participant.locality);
+    add("version",APP.version);
+
+    document.body.appendChild(form);
+
+    form.submit();
+
+    document.body.removeChild(form);
+
+    // Download PDF
+    window.open(
+        "leaflet/Disaster_Preparedness_Leaflet.pdf",
+        "_blank"
+    );
+
+}

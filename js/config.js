@@ -19,6 +19,6 @@ const APP = {
     "1.0",
 
     googleScriptUrl:
-    "https://script.google.com/macros/s/AKfycbwUSe3Lgtt9Js_rI_T5CNALFqRZmYmh4HE9o6gkvdnri5NmWTT7SNJYnO2-4wN-bDCE/exec"
+    "https://script.google.com/macros/s/AKfycbzqiLf93qzmb98ImoeK0ucP2pIgSSbb0w4WtW1oiJ6qoPkR4GaNshtK4Erm8fSRZKDJ/exec"
 
 };

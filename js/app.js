@@ -878,42 +878,34 @@ function calculateCategoryScores(){
         switch(q.category){
 
             case "Fire Safety":
-
                 scores.fire += answer.score;
                 break;
 
             case "LPG & Electrical Safety":
-
                 scores.lpg += answer.score;
                 break;
 
             case "Earthquake":
-
                 scores.earthquake += answer.score;
                 break;
 
-            case "Flood":
-
+            case "Flood & Monsoon Safety":
                 scores.flood += answer.score;
                 break;
 
-            case "Building Safety":
-
+            case "Building & Community Preparedness":
                 scores.building += answer.score;
                 break;
 
             case "Family Preparedness":
-
                 scores.family += answer.score;
                 break;
 
-            case "Disaster Awareness":
-
+            case "Disaster & Legal Awareness":
                 scores.awareness += answer.score;
                 break;
 
-            case "Medical Emergency":
-
+            case "Medical & First Aid":
                 scores.medical += answer.score;
                 break;
 

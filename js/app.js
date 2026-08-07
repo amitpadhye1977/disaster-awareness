@@ -746,6 +746,7 @@ async function submitSurvey(){
 
     surveySubmitted = true;
 
+    
     const percentage =
         Math.round((score/questions.length)*100);
 
@@ -780,6 +781,31 @@ async function submitSurvey(){
 
     }
 
+    // Device Information
+
+    add("browser", navigator.userAgent);
+    
+    add("platform", navigator.platform);
+    
+    add("language", navigator.language);
+    
+    add(
+        "timezone",
+        Intl.DateTimeFormat().resolvedOptions().timeZone
+    );
+    
+    add(
+        "screen",
+        screen.width + "x" + screen.height
+    );
+    
+    add(
+        "colorDepth",
+        screen.colorDepth
+    );
+    
+    add("version", APP.version);
+
     add("age",participant.age);
     add("gender",participant.gender);
     add("city",participant.city);
@@ -790,26 +816,29 @@ async function submitSurvey(){
     add("percentage",percentage);
     add("preparedness",preparedness);
 
-    add("fireScore",0);
-    add("lpgScore",0);
-    add("earthquakeScore",0);
-    add("floodScore",0);
-    add("buildingScore",0);
-    add("familyScore",0);
-    add("awarenessScore",0);
-    add("medicalScore",0);
+    const categoryScores = calculateCategoryScores();
+
+    add("fireScore", categoryScores.fire);
+    
+    add("lpgScore", categoryScores.lpg);
+    
+    add("earthquakeScore", categoryScores.earthquake);
+    
+    add("floodScore", categoryScores.flood);
+    
+    add("buildingScore", categoryScores.building);
+    
+    add("familyScore", categoryScores.family);
+    
+    add("awarenessScore", categoryScores.awareness);
+    
+    add("medicalScore", categoryScores.medical);
 
     for(let i=0;i<answers.length;i++){
 
         add("Q"+(i+1),answers[i].selectedOption);
 
     }
-
-    add("browser",navigator.userAgent);
-
-    add("platform",navigator.platform);
-
-    add("version",APP.version);
 
     document.body.appendChild(form);
 
@@ -818,6 +847,92 @@ async function submitSurvey(){
     localStorage.setItem("DPAI_COMPLETED","YES");
 
     document.body.removeChild(form);
+
+}
+
+function calculateCategoryScores(){
+
+    const scores={
+
+        fire:0,
+
+        lpg:0,
+
+        earthquake:0,
+
+        flood:0,
+
+        building:0,
+
+        family:0,
+
+        awareness:0,
+
+        medical:0
+
+    };
+
+    answers.forEach(function(answer){
+
+        const q=questions.find(x=>x.id==answer.questionId);
+
+        if(!q) return;
+
+        switch(q.category){
+
+            case "Fire":
+
+                scores.fire+=answer.score;
+
+                break;
+
+            case "Gas Leakage":
+
+                scores.lpg+=answer.score;
+
+                break;
+
+            case "Earthquake":
+
+                scores.earthquake+=answer.score;
+
+                break;
+
+            case "Flood":
+
+                scores.flood+=answer.score;
+
+                break;
+
+            case "Building Safety":
+
+                scores.building+=answer.score;
+
+                break;
+
+            case "Family Preparedness":
+
+                scores.family+=answer.score;
+
+                break;
+
+            case "Disaster Awareness":
+
+                scores.awareness+=answer.score;
+
+                break;
+
+            case "Medical":
+
+                scores.medical+=answer.score;
+
+                break;
+
+        }
+
+    });
+
+    return scores;
 
 }
 

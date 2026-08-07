@@ -10,6 +10,7 @@
 let surveySubmitted = false;
 let currentQuestion = 0;
 let score = 0;
+let preparedness = "";
 
 const participant = {};
 const answers = [];
@@ -566,7 +567,7 @@ function showSummary(){
 
     const percentage = Math.round((score / maxScore) * 100);
 
-    let preparedness = "";
+    preparedness = "";
     let badge = "";
     let alertClass = "";
 
@@ -696,14 +697,15 @@ function showSummary(){
         </div>
         
         <div class="d-grid gap-2 mt-4">
-        
+
             <button
-                class="btn btn-success"
-                onclick="restartApp()">
+                class="btn btn-primary btn-lg"
+                onclick="downloadLeaflet()">
         
-                Start Again
+                📥 Download Disaster Preparedness Leaflet
         
             </button>
+        
         
         </div>
 
@@ -748,7 +750,7 @@ async function submitSurvey(){
     const percentage =
         Math.round((score/questions.length)*100);
 
-    let preparedness="";
+    preparedness="";
 
     if(percentage>=80)
         preparedness="Well Prepared";

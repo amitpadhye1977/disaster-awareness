@@ -25,6 +25,14 @@ window.onload = function () {
     renderProgress(0, "Welcome");
     renderFooter();
 
+    if(localStorage.getItem("DPAI_COMPLETED")=="YES"){
+
+        showAlreadyCompleted();
+    
+        return;
+    
+    }
+
     showHome();
 
 };
@@ -158,6 +166,56 @@ Begin Awareness Initiative
 </div>
 
 `;
+
+}
+
+
+function showAlreadyCompleted(){
+
+    document.getElementById("content").innerHTML=`
+
+    <div class="container">
+
+        <div class="main-card text-center">
+
+            <h2>
+
+                ✅ Survey Already Completed
+
+            </h2>
+
+            <hr>
+
+            <p>
+
+                Thank you for participating in the
+
+                <strong>
+
+                Disaster Preparedness Awareness Initiative
+
+                </strong>
+
+            </p>
+
+            <div class="alert alert-success">
+
+                Our records indicate that this device has
+                already completed the survey.
+
+            </div>
+
+            <p>
+
+                Thank you for supporting disaster awareness.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    `;
 
 }
 
@@ -756,6 +814,8 @@ async function submitSurvey(){
     document.body.appendChild(form);
 
     form.submit();
+
+    localStorage.setItem("DPAI_COMPLETED","YES");
 
     document.body.removeChild(form);
 

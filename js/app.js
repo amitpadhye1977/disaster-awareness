@@ -462,17 +462,24 @@ function selectOption(index){
     const q = questions[currentQuestion];
 
     const selected = q.options[index];
-
+    
     score += selected.score;
-
-    answers.push(index);
-
+    
+    answers.push({
+    
+        questionId: q.id,
+    
+        selectedOption: index,
+    
+        score: selected.score
+    
+    });
+    
     setTimeout(function(){
-
+    
         showFeedback(selected,q);
-
+    
     },500);
-
 }
 function nextQuestion(){
 
@@ -727,16 +734,14 @@ async function submitSurvey() {
 
     try{
 
-        const response = await fetch(APP.googleScriptUrl,{
+        const response = await fetch(APP.googleScriptUrl, {
 
-            method:"POST",
+            method: "POST",
 
-            body:JSON.stringify(data),
-
-            headers:{
-                "Content-Type":"application/json"
-            }
-
+            mode: "no-cors",
+        
+            body: JSON.stringify(data)
+        
         });
 
         const result = await response.json();

@@ -381,9 +381,15 @@ function showQuestion() {
 
                 <h3 class="mb-0">
 
-                    ${q.icon} ${q.title}
+                    ${q.icon} ${q.category}
 
                 </h3>
+
+                <h4 class="mt-3">
+
+                    ${q.title}
+                
+                </h4>
 
                 <span class="risk ${q.risk}">
 
@@ -456,11 +462,7 @@ function selectOption(index){
 
     const selected = q.options[index];
 
-    if(selected.correct){
-
-        score++;
-
-    }
+    score += selected.score;
 
     answers.push(index);
 
@@ -492,7 +494,9 @@ function nextQuestion(){
 
 function showSummary(){
 
-    const percentage = Math.round((score / questions.length) * 100);
+    const maxScore = questions.length;
+
+    const percentage = Math.round((score / maxScore) * 100);
 
     let preparedness = "";
     let badge = "";
@@ -675,7 +679,9 @@ function showFeedback(selected, q){
 
             <h3>
 
-                ${selected.correct ? "✅ Recommended Response" : "💡 Let's Learn Together"}
+                ${selected.score == 1
+                ? "✅ Excellent!"
+                : "💡 Safety Learning"}
 
             </h3>
 
@@ -683,7 +689,7 @@ function showFeedback(selected, q){
 
             <div class="alert alert-secondary">
 
-                <strong>You Selected</strong>
+                <strong>Your Response</strong>
 
                 <br><br>
 
@@ -703,7 +709,7 @@ function showFeedback(selected, q){
 
                 <br><br>
 
-                ${q.options.find(option => option.correct).text}
+                ${q.options.find(option => option.score == 1).text}
 
             </div>
 
@@ -735,7 +741,7 @@ function showFeedback(selected, q){
 
                     ${currentQuestion == questions.length-1 ?
                     "View Summary" :
-                    "Continue Learning →"}
+                    "Next Situation →"}
 
                 </button>
 
